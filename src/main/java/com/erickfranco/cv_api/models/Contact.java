@@ -15,7 +15,11 @@ import javax.validation.constraints.Pattern;
 @NoArgsConstructor
 @Entity
 public class Contact {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
     @Email
     @NotNull
     @NotBlank

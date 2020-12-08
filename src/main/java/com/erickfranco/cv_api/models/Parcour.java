@@ -19,6 +19,9 @@ public class Parcour {
     @Column(length = 60, nullable = false)
     private String titrePoste;
 
+    @Column(length = 60, nullable = false)
+    private String entreprise;
+
     @Column(columnDefinition = "Text")
     private String description;
 

@@ -11,9 +11,9 @@ public interface InterContactService {
 
     List<Contact> findAllMessage();
 
-    Optional<Contact> findMessageById(String id);
+    Optional<Contact> findMessageById(Integer id);
 
     Contact createMessage(Contact diplome);
 
-    void deleteMessageById(String id);
+    void deleteMessageById(Integer id);
 }

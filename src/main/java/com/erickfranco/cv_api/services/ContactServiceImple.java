@@ -25,8 +25,8 @@ public class ContactServiceImple implements InterContactService {
     }
 
     @Override
-    public Optional<Contact> findMessageById(String email) {
-        return contactRepository.findById(email);
+    public Optional<Contact> findMessageById(Integer id) {
+        return contactRepository.findById(id);
     }
 
     @Override
@@ -35,8 +35,8 @@ public class ContactServiceImple implements InterContactService {
     }
 
     @Override
-    public void deleteMessageById(String email) {
-        contactRepository.deleteById(email);
+    public void deleteMessageById(Integer id) {
+        contactRepository.deleteById(id);
 
     }
 }

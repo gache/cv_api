@@ -48,7 +48,7 @@ public class ContactController {
 
 
     @DeleteMapping("/deleteContact/{id}")
-    public String deleteProjet(@PathVariable String id) {
+    public String deleteProjet(@PathVariable Integer id) {
         contactService.deleteMessageById(id);
         return "Projet Eliminé";
     }
