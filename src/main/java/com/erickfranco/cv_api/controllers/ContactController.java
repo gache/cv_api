@@ -8,11 +8,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
+/*@RequestMapping("/api")*/
 public class ContactController {
 
     @Autowired
@@ -28,30 +31,24 @@ public class ContactController {
 
     }
 
-    @PostMapping("/createContact")
-    public ResponseEntity<Contact> createProjet(@RequestBody Contact contact) {
+    @PostMapping("/contacts/save")
+    public void addContact( @RequestBody Contact contact) throws IOException {
+        contactService.save(contact);
+    }
+
+    @GetMapping("/contact/{id}")
+    public ResponseEntity<Optional<Contact>> getProjetById(@PathVariable Integer id) {
         try {
-            return new ResponseEntity<>(contactService.createMessage(contact), HttpStatus.OK);
+            return new ResponseEntity<>(contactService.findMessageById(id), HttpStatus.OK);
         } catch (Exception exception) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
-
-   /* @GetMapping("/contact/{id}")
-    public ResponseEntity<Optional<Contact>> getProjetById(@PathVariable String email) {
-        try {
-            return new ResponseEntity<>(contactService.deleteMessageById(email), HttpStatus.OK);
-        } catch (Exception exception) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-    }*/
-
 
     @DeleteMapping("/deleteContact/{id}")
     public String deleteProjet(@PathVariable Integer id) {
         contactService.deleteMessageById(id);
         return "Projet Eliminé";
     }
-
 
 }

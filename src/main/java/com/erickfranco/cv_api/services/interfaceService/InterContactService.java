@@ -13,7 +13,7 @@ public interface InterContactService {
 
     Optional<Contact> findMessageById(Integer id);
 
-    Contact createMessage(Contact diplome);
+    void save(Contact contact);
 
     void deleteMessageById(Integer id);
 }

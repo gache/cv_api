@@ -2,27 +2,24 @@ package com.erickfranco.cv_api.models;
 
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 @Entity
 public class Contact {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Email
-    @NotNull
-    @NotBlank
     @Column(nullable = false, length = 150)
     private String email;
 

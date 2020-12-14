@@ -30,8 +30,8 @@ public class ContactServiceImple implements InterContactService {
     }
 
     @Override
-    public Contact createMessage(Contact contact) {
-        return contactRepository.save(contact);
+    public void save(Contact contact) {
+        contactRepository.save(contact);
     }
 
     @Override
