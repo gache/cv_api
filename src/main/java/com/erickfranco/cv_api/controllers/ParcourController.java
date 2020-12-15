@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:4200")
+@RequestMapping("/api")
 @RestController
 public class ParcourController {
 
@@ -26,7 +27,7 @@ public class ParcourController {
         }
     }
 
-    @PostMapping("/save")
+    @PostMapping("/parcour/createParcour")
     public ResponseEntity<Parcour> saveDiplome(@RequestBody Parcour parcour) {
         try {
             return new ResponseEntity<>(parcourService.save(parcour), HttpStatus.OK);
@@ -35,7 +36,7 @@ public class ParcourController {
         }
     }
 
-    @GetMapping("/parcour/{id}")
+    @GetMapping("/parcour/parcourId/{id}")
     public ResponseEntity<Optional<Parcour>> getDiplomeById(@PathVariable Integer id) {
         try {
             return new ResponseEntity<>(parcourService.findById(id), HttpStatus.OK);
@@ -44,7 +45,7 @@ public class ParcourController {
         }
     }
 
-    @PutMapping("/parcour/update")
+    @PutMapping("/parcour/updateParcour")
     public ResponseEntity<Parcour> updateParcour(@RequestBody Parcour parcour) {
         try {
             return new ResponseEntity<>(parcourService.save(parcour), HttpStatus.OK);
@@ -53,7 +54,7 @@ public class ParcourController {
         }
     }
 
-    @DeleteMapping("/parcour/delete/{id}")
+    @DeleteMapping("/parcour/deleteParcourId/{id}")
     public String deleteParcour(@PathVariable Integer id) {
         parcourService.deleteById(id);
         return "Parcour Eliminé";

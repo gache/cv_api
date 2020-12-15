@@ -15,7 +15,7 @@ import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
-//@RequestMapping("/diplomes")
+@RequestMapping("/api")
 public class DiplomeController {
 
     @Autowired
@@ -30,7 +30,7 @@ public class DiplomeController {
         }
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/diplomes/diplomesId/{id}")
     public ResponseEntity<Optional<Diplome>> getDiplomeById(@PathVariable("id") Integer id) {
         try {
             return new ResponseEntity<>(diplomeService.findDiplomeById(id), HttpStatus.OK);
@@ -39,7 +39,7 @@ public class DiplomeController {
         }
     }
 
-    @PostMapping("/create")
+    @PostMapping("/diplomes/createDiplome")
     public ResponseEntity<Diplome> createDiplome(@RequestBody Diplome diplome) {
         try {
             return new ResponseEntity<>(diplomeService.createDiplome(diplome), HttpStatus.OK);
@@ -48,7 +48,7 @@ public class DiplomeController {
         }
     }
 
-    @PutMapping("/update")
+    @PutMapping("/diplomes/updateDiplome")
     public ResponseEntity<Diplome> updateDiplome(@RequestBody Diplome diplome) {
         try {
             return new ResponseEntity<>(diplomeService.createDiplome(diplome), HttpStatus.OK);
@@ -57,7 +57,7 @@ public class DiplomeController {
         }
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/diplomes/deleteDiplomeId/{id}")
     public String delete(@PathVariable("id") Integer id) {
         diplomeService.deleteDiplomeById(id);
         return "Diplome eliminer";

@@ -15,7 +15,7 @@ import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
-/*@RequestMapping("/api")*/
+@RequestMapping("/api")
 public class ContactController {
 
     @Autowired
@@ -31,12 +31,12 @@ public class ContactController {
 
     }
 
-    @PostMapping("/contacts/save")
-    public void addContact( @RequestBody Contact contact) throws IOException {
+    @PostMapping("/contacts/createContact")
+    public void addContact(@RequestBody Contact contact) throws IOException {
         contactService.save(contact);
     }
 
-    @GetMapping("/contact/{id}")
+    @GetMapping("/contacts/contactId/{id}")
     public ResponseEntity<Optional<Contact>> getProjetById(@PathVariable Integer id) {
         try {
             return new ResponseEntity<>(contactService.findMessageById(id), HttpStatus.OK);
@@ -45,10 +45,10 @@ public class ContactController {
         }
     }
 
-    @DeleteMapping("/deleteContact/{id}")
+    @DeleteMapping("/contacts/deleteContactId/{id}")
     public String deleteProjet(@PathVariable Integer id) {
         contactService.deleteMessageById(id);
-        return "Projet Eliminé";
+        return "Contact Eliminé";
     }
 
 }

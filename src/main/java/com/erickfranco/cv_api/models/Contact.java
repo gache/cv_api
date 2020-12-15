@@ -9,10 +9,9 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Pattern;
 
-
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
 @Entity
 public class Contact {
     @Id

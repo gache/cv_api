@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:4200")
+@RequestMapping("/api")
 @RestController
 public class ProjetController {
 
@@ -29,7 +30,7 @@ public class ProjetController {
 
     }
 
-    @PostMapping("/createProjet")
+    @PostMapping("/projets/createProjet")
     public ResponseEntity<Projet> createProjet(@RequestBody Projet projet) {
         try {
             return new ResponseEntity<>(projetService.createProjet(projet), HttpStatus.OK);
@@ -38,7 +39,7 @@ public class ProjetController {
         }
     }
 
-    @GetMapping("/projets/{id}")
+    @GetMapping("/projets/projetsId/{id}")
     public ResponseEntity<Optional<Projet>> getProjetById(@PathVariable Integer id) {
         try {
             return new ResponseEntity<>(projetService.findProjetById(id), HttpStatus.OK);
@@ -48,7 +49,7 @@ public class ProjetController {
     }
 
 
-    @PutMapping("/updateProjet")
+    @PutMapping("/projets/updateProjet")
     public ResponseEntity<Projet> updateProjet(@RequestBody Projet projet) {
         try {
             return new ResponseEntity<>(projetService.createProjet(projet), HttpStatus.OK);
@@ -57,7 +58,7 @@ public class ProjetController {
         }
     }
 
-    @DeleteMapping("/deleteProjet/{id}")
+    @DeleteMapping("/projets/deleteProjetId/{id}")
     public String deleteProjet(@PathVariable Integer id) {
         projetService.deleteProjetById(id);
         return "Projet Eliminé";
