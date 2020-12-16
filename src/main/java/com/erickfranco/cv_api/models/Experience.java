@@ -11,7 +11,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Parcour {
+public class Experience {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

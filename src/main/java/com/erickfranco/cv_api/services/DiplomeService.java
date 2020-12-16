@@ -1,43 +1,42 @@
 package com.erickfranco.cv_api.services;
 
 
+import com.erickfranco.cv_api.config.exception.NotFoundException;
 import com.erickfranco.cv_api.models.Diplome;
 import com.erickfranco.cv_api.repositories.DiplomeRepository;
-import com.erickfranco.cv_api.services.interfaceService.InterDiplomeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 
 @Service
-public class DiplomeServiceImpl implements InterDiplomeService {
-
+public class DiplomeService {
 
     private final DiplomeRepository diplomeRepository;
 
     @Autowired
-    public DiplomeServiceImpl(DiplomeRepository diplomeRepository) {
+    public DiplomeService(DiplomeRepository diplomeRepository) {
         this.diplomeRepository = diplomeRepository;
     }
 
-    @Override
     public List<Diplome> findAllDiplome() {
         return diplomeRepository.findAll();
     }
 
-    @Override
-    public Optional<Diplome> findDiplomeById(Integer id) {
-        return diplomeRepository.findById(id);
+
+    public Diplome findDiplomeById(Integer id) {
+        if (!diplomeRepository.existsById(id)) {
+            throw new NotFoundException("Le Diplôme avec l'id " + id + " n'existe pas ");
+        }
+        return diplomeRepository.getOne(id);
     }
 
-    @Override
+
     public Diplome createDiplome(Diplome diplome) {
         return diplomeRepository.save(diplome);
     }
 
-    @Override
     public void deleteDiplomeById(Integer id) {
         diplomeRepository.deleteById(id);
     }
