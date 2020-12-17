@@ -2,14 +2,13 @@ package com.erickfranco.cv_api.controllers;
 
 
 import com.erickfranco.cv_api.models.Langage;
-import com.erickfranco.cv_api.services.LangageServiceImple;
+import com.erickfranco.cv_api.services.LangageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api")
@@ -17,50 +16,33 @@ import java.util.Optional;
 public class LangageController {
 
     @Autowired
-    private LangageServiceImple langageService;
+    private LangageService langageService;
 
     @GetMapping("/langages")
     public ResponseEntity<List<Langage>> getLangage() {
-        try {
-            return new ResponseEntity<>(langageService.findAllLangage(), HttpStatus.OK);
-        } catch (Exception exception) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+        return ResponseEntity.status(HttpStatus.OK).body(langageService.findAllLangage());
     }
 
-    @PostMapping("/langages/createLangage")
+    @PostMapping("/createLangage")
     public ResponseEntity<Langage> createLangage(@RequestBody Langage langage) {
-        try {
-            return new ResponseEntity<>(langageService.createLangage(langage), HttpStatus.OK);
-        } catch (Exception exception) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+        return ResponseEntity.status(HttpStatus.CREATED).body(langageService.createLangage(langage));
     }
 
-    @GetMapping("/langages/langageId/{id}")
-    public ResponseEntity<Optional<Langage>> getLangageById(@PathVariable Integer id) {
-        try {
-            return new ResponseEntity<>(langageService.findLangageById(id), HttpStatus.OK);
-        } catch (Exception exception) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+    @GetMapping("/langageId/{id}")
+    public ResponseEntity<Langage> getLangageById(@PathVariable Integer id) {
+        return ResponseEntity.status(HttpStatus.OK).body(langageService.findLangageById(id));
     }
 
 
-    @PutMapping("/langages/updateLangage")
+    @PutMapping("/updateLangage")
     public ResponseEntity<Langage> updateLangage(@RequestBody Langage langage) {
-        try {
-            return new ResponseEntity<>(langageService.createLangage(langage), HttpStatus.OK);
-        } catch (Exception exception) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+        return ResponseEntity.status(HttpStatus.CREATED).body(langageService.createLangage(langage));
     }
 
-    @DeleteMapping("/langages/deleteLangageId/{id}")
-
-    public String deleteLangage(@PathVariable Integer id) {
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Langage> deleteLangage(@PathVariable("id") Integer id) {
         langageService.deleteLangageById(id);
-        return "Langage Eliminé";
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 

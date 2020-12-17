@@ -38,8 +38,8 @@ public class ExperienceController {
 
     @DeleteMapping("/deleteId/{id}")
     public ResponseEntity<Experience> deleteExperience(@PathVariable Integer id) {
-        experienceService.deleteById(id);
-        return  new ResponseEntity<>(HttpStatus.OK);
+       experienceService.deleteById(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
 

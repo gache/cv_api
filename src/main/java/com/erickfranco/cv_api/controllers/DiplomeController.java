@@ -12,7 +12,6 @@ import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping("/api")
 public class DiplomeController {
 
     @Autowired
@@ -23,22 +22,22 @@ public class DiplomeController {
         return ResponseEntity.status(HttpStatus.OK).body(diplomeService.findAllDiplome());
     }
 
-    @GetMapping("/diplomes/diplomeId/{id}")
+    @GetMapping("/diplomeId/{id}")
     public ResponseEntity<Diplome> getDiplomeById(@PathVariable("id") Integer id) {
         return ResponseEntity.status(HttpStatus.OK).body(diplomeService.findDiplomeById(id));
     }
 
-    @PostMapping("/diplomes/createDiplome")
+    @PostMapping("/createDiplome")
     public ResponseEntity<Diplome> createDiplome(@RequestBody Diplome diplome) {
         return ResponseEntity.status(HttpStatus.CREATED).body(diplomeService.createDiplome(diplome));
     }
 
-    @PutMapping("/diplomes/updateDiplome")
+    @PutMapping("/updateDiplome")
     public ResponseEntity<Diplome> updateDiplome(@RequestBody Diplome diplome) {
         return ResponseEntity.status(HttpStatus.CREATED).body(diplomeService.createDiplome(diplome));
     }
 
-    @DeleteMapping("/diplomes/deleteDiplomeId/{id}")
+    @DeleteMapping("/deleteDiplomeId/{id}")
     public ResponseEntity<Diplome> delete(@PathVariable("id") Integer id) {
         diplomeService.deleteDiplomeById(id);
         return new ResponseEntity<>(HttpStatus.OK);

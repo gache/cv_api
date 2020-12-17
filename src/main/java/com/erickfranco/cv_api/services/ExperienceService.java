@@ -34,6 +34,13 @@ public class ExperienceService  {
     }
 
     public void deleteById(Integer id) {
+        if (!experienceRepository.existsById(id)) {
+            throw new NotFoundException("L'experience que vous souhaitez l'eliminer avec l'id " + id + " n'existe pas ");
+        }
         experienceRepository.deleteById(id);
     }
+
+
+
+
 }

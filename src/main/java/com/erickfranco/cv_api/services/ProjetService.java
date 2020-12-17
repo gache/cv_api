@@ -40,6 +40,9 @@ public class ProjetService {
     }
 
     public void deleteById(Integer id) {
+        if (!projetRepository.existsById(id)) {
+            throw new NotFoundException("Le Projet que vous souhaitez l'eliminer avec l'id " + id + " n'existe pas ");
+        }
         projetRepository.deleteById(id);
     }
 }
