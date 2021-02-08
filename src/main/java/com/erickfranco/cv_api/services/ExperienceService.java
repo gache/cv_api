@@ -1,6 +1,6 @@
 package com.erickfranco.cv_api.services;
 
-import com.erickfranco.cv_api.config.exception.NotFoundException;
+import com.erickfranco.cv_api.configurations.exceptionconfig.exception.NotFoundExcepton;
 import com.erickfranco.cv_api.models.Experience;
 import com.erickfranco.cv_api.repositories.ExperienceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ExperienceService  {
+public class ExperienceService {
 
     public final ExperienceRepository experienceRepository;
 
@@ -23,8 +23,8 @@ public class ExperienceService  {
     }
 
     public Experience findById(Integer id) {
-        if (!experienceRepository.existsById(id)){
-            throw new NotFoundException("Cette Experience avec l'id " + id + " n'existe pas ");
+        if (!experienceRepository.existsById(id)) {
+            throw new NotFoundExcepton("Cette Experience avec l'id " + id + " n'existe pas ");
         }
         return experienceRepository.getOne(id);
     }
@@ -35,12 +35,10 @@ public class ExperienceService  {
 
     public void deleteById(Integer id) {
         if (!experienceRepository.existsById(id)) {
-            throw new NotFoundException("L'experience que vous souhaitez l'eliminer avec l'id " + id + " n'existe pas ");
+            throw new NotFoundExcepton("L'experience que vous souhaitez l'eliminer avec l'id " + id + " n'existe pas ");
         }
         experienceRepository.deleteById(id);
     }
-
-
 
 
 }

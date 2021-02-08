@@ -1,8 +1,8 @@
 package com.erickfranco.cv_api.services;
 
 
-import com.erickfranco.cv_api.config.exception.BadRequestException;
-import com.erickfranco.cv_api.config.exception.NotFoundException;
+import com.erickfranco.cv_api.configurations.exceptionconfig.exception.BadRequestExcepton;
+import com.erickfranco.cv_api.configurations.exceptionconfig.exception.NotFoundExcepton;
 import com.erickfranco.cv_api.models.Projet;
 import com.erickfranco.cv_api.repositories.ProjetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,14 +26,14 @@ public class ProjetService {
 
     public Projet findProjetById(Integer id) {
         if (!projetRepository.existsById(id)) {
-            throw new NotFoundException("Le projet avec l'id " + id + " n'existe pas ");
+            throw new NotFoundExcepton("Le projet avec l'id " + id + " n'existe pas ");
         }
         return projetRepository.getOne(id);
     }
 
     public Projet createProjet(Projet projet) {
         if (projet.getNom() == null || projet.getNom().isEmpty()) {
-            throw new BadRequestException("Le champ Nom est obligatoire");
+            throw new BadRequestExcepton("Le champ Nom est obligatoire");
         }
         projetRepository.save(projet);
         return projet;
@@ -41,7 +41,7 @@ public class ProjetService {
 
     public void deleteById(Integer id) {
         if (!projetRepository.existsById(id)) {
-            throw new NotFoundException("Le Projet que vous souhaitez l'eliminer avec l'id " + id + " n'existe pas ");
+            throw new NotFoundExcepton("Le Projet que vous souhaitez l'eliminer avec l'id " + id + " n'existe pas ");
         }
         projetRepository.deleteById(id);
     }

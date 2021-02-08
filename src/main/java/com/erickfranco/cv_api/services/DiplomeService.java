@@ -1,8 +1,8 @@
 package com.erickfranco.cv_api.services;
 
 
-import com.erickfranco.cv_api.config.exception.BadRequestException;
-import com.erickfranco.cv_api.config.exception.NotFoundException;
+import com.erickfranco.cv_api.configurations.exceptionconfig.exception.BadRequestExcepton;
+import com.erickfranco.cv_api.configurations.exceptionconfig.exception.NotFoundExcepton;
 import com.erickfranco.cv_api.models.Diplome;
 import com.erickfranco.cv_api.repositories.DiplomeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +28,7 @@ public class DiplomeService {
 
     public Diplome findDiplomeById(Integer id) {
         if (!diplomeRepository.existsById(id)) {
-            throw new NotFoundException("Le Diplôme avec l'id " + id + " n'existe pas ");
+            throw new NotFoundExcepton("Le Diplôme avec l'id " + id + " n'existe pas ");
         }
         return diplomeRepository.getOne(id);
     }
@@ -36,7 +36,7 @@ public class DiplomeService {
 
     public Diplome createDiplome(Diplome diplome) {
         if (diplome.getNomDiplome().isEmpty()) {
-            throw new BadRequestException("Le nom du diplome est obligatoire");
+            throw new BadRequestExcepton("Le nom du diplome est obligatoire");
         }
         return diplomeRepository.save(diplome);
     }
@@ -44,7 +44,7 @@ public class DiplomeService {
 
     public void deleteDiplomeById(Integer id) {
         if (!diplomeRepository.existsById(id)) {
-            throw new NotFoundException("Le Diplome que vous souhaitez l'eliminer avec l'id " + id + " n'existe pas ");
+            throw new NotFoundExcepton("Le Diplome que vous souhaitez l'eliminer avec l'id " + id + " n'existe pas ");
         }
         diplomeRepository.deleteById(id);
     }

@@ -1,6 +1,6 @@
 package com.erickfranco.cv_api.services;
 
-import com.erickfranco.cv_api.config.exception.NotFoundException;
+import com.erickfranco.cv_api.configurations.exceptionconfig.exception.NotFoundExcepton;
 import com.erickfranco.cv_api.models.Langage;
 import com.erickfranco.cv_api.repositories.LangageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,7 @@ public class LangageService {
 
     public Langage findLangageById(Integer id) {
         if (!langageRepository.existsById(id)) {
-            throw new NotFoundException("Le projet avec l'id " + id + " n'existe pas ");
+            throw new NotFoundExcepton("Le projet avec l'id " + id + " n'existe pas ");
         }
         return langageRepository.getOne(id);
     }
@@ -37,7 +37,7 @@ public class LangageService {
 
     public void deleteLangageById(Integer id) {
         if (!langageRepository.existsById(id)) {
-            throw new NotFoundException("Le Lanagage que vous souhaitez l'eliminer avec l'id " + id + " n'existe pas ");
+            throw new NotFoundExcepton("Le Lanagage que vous souhaitez l'eliminer avec l'id " + id + " n'existe pas ");
         }
         langageRepository.deleteById(id);
     }
