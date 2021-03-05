@@ -19,7 +19,9 @@ public class User implements Serializable, UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer userId;
+
     private String username;
+
     private String password;
 
 
@@ -39,6 +41,7 @@ public class User implements Serializable, UserDetails {
     public void setPassword(String password) {
         this.password = password;
     }
+
     @Override
     public String getPassword() {
         return password;

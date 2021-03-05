@@ -13,7 +13,6 @@ import java.util.Optional;
  */
 public interface UserServiceInter extends UserDetailsService {
 
-    Optional<User> findUserWithName(String username);
 
     @Override
     UserDetails loadUserByUsername(String s) throws UsernameNotFoundException;

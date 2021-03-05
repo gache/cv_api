@@ -12,7 +12,7 @@ import java.util.List;
 
 
 @Service
-public class DiplomeService {
+public class DiplomeService  {
 
     private final DiplomeRepository diplomeRepository;
 
@@ -32,7 +32,6 @@ public class DiplomeService {
         }
         return diplomeRepository.getOne(id);
     }
-
 
     public Diplome createDiplome(Diplome diplome) {
         if (diplome.getNomDiplome().isEmpty()) {

@@ -3,7 +3,6 @@ package fr.erickfranco.cv_api.services.serviceinter;
 import fr.erickfranco.cv_api.models.Message;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * @author Erick Franco
@@ -14,7 +13,7 @@ public interface MessageServiceInter {
 
     void deleteMessageById(Integer id);
 
-    Optional<Message> findMessageById(Integer id);
+    Message findMessageById(Integer id);
 
     Message saveMessage(Message message);
 
