@@ -8,11 +8,11 @@ import java.util.Optional;
 /**
  * @author Erick Franco
  */
-public interface DiplomeService {
+public interface DiplomeServiceInter {
 
     List<Diplome> findAllDiplome();
 
-    Diplome createDiplome(Diplome diplome);
+    Diplome saveDiplome(Diplome diplome);
 
     Optional<Diplome> findDiplomeById(Integer id);
 
