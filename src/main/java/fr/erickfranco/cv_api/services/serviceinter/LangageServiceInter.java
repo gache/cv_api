@@ -14,7 +14,7 @@ public interface LangageServiceInter {
 
     Optional<Langage> findLangageById(Integer id);
 
-    Langage createLangage(Langage langage);
+    Langage saveLangage(Langage langage);
 
     void deleteLangageById(Integer id);
 }
