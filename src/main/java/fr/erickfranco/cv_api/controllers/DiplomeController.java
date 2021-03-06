@@ -2,7 +2,7 @@ package fr.erickfranco.cv_api.controllers;
 
 
 import fr.erickfranco.cv_api.models.Diplome;
-import fr.erickfranco.cv_api.services.DiplomeService;
+import fr.erickfranco.cv_api.services.serviceinter.DiplomeServiceInter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,31 +15,35 @@ import java.util.List;
 public class DiplomeController {
 
     @Autowired
-    public DiplomeService diplomeService;
+    public final DiplomeServiceInter diplomeServiceInter;
+
+    public DiplomeController(DiplomeServiceInter diplomeServiceInter) {
+        this.diplomeServiceInter = diplomeServiceInter;
+    }
 
     @GetMapping("/diplomes")
     public ResponseEntity<List<Diplome>> getDiplomes() {
-        return ResponseEntity.status(HttpStatus.OK).body(diplomeService.findAllDiplome());
+        return ResponseEntity.status(HttpStatus.OK).body(diplomeServiceInter.findAllDiplome());
     }
 
     @GetMapping("/diplomeId/{id}")
     public ResponseEntity<Diplome> getDiplomeById(@PathVariable("id") Integer id) {
-        return ResponseEntity.status(HttpStatus.OK).body(diplomeService.findDiplomeById(id));
+        return ResponseEntity.status(HttpStatus.OK).body(diplomeServiceInter.findDiplomeById(id));
     }
 
     @PostMapping("/createDiplome")
     public ResponseEntity<Diplome> createDiplome(@RequestBody Diplome diplome) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(diplomeService.createDiplome(diplome));
+        return ResponseEntity.status(HttpStatus.CREATED).body(diplomeServiceInter.saveDiplome(diplome));
     }
 
     @PutMapping("/updateDiplome")
     public ResponseEntity<Diplome> updateDiplome(@RequestBody Diplome diplome) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(diplomeService.createDiplome(diplome));
+        return ResponseEntity.status(HttpStatus.CREATED).body(diplomeServiceInter.saveDiplome(diplome));
     }
 
     @DeleteMapping("/deleteDiplomeId/{id}")
     public ResponseEntity<Diplome> delete(@PathVariable("id") Integer id) {
-        diplomeService.deleteDiplomeById(id);
+        diplomeServiceInter.deleteDiplomeById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

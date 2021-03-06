@@ -2,7 +2,7 @@ package fr.erickfranco.cv_api.controllers;
 
 
 import fr.erickfranco.cv_api.models.Langage;
-import fr.erickfranco.cv_api.services.LangageService;
+import fr.erickfranco.cv_api.services.serviceinter.LangageServiceInter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,32 +16,36 @@ import java.util.List;
 public class LangageController {
 
     @Autowired
-    private LangageService langageService;
+    private final LangageServiceInter langageServiceInter;
+
+    public LangageController(LangageServiceInter langageServiceInter) {
+        this.langageServiceInter = langageServiceInter;
+    }
 
     @GetMapping("/langages")
     public ResponseEntity<List<Langage>> getLangage() {
-        return ResponseEntity.status(HttpStatus.OK).body(langageService.findAllLangage());
+        return ResponseEntity.status(HttpStatus.OK).body(langageServiceInter.findAllLangage());
     }
 
     @PostMapping("/createLangage")
     public ResponseEntity<Langage> createLangage(@RequestBody Langage langage) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(langageService.createLangage(langage));
+        return ResponseEntity.status(HttpStatus.CREATED).body(langageServiceInter.saveLangage(langage));
     }
 
     @GetMapping("/langageId/{id}")
     public ResponseEntity<Langage> getLangageById(@PathVariable Integer id) {
-        return ResponseEntity.status(HttpStatus.OK).body(langageService.findLangageById(id));
+        return ResponseEntity.status(HttpStatus.OK).body(langageServiceInter.findLangageById(id));
     }
 
 
     @PutMapping("/updateLangage")
     public ResponseEntity<Langage> updateLangage(@RequestBody Langage langage) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(langageService.createLangage(langage));
+        return ResponseEntity.status(HttpStatus.CREATED).body(langageServiceInter.saveLangage(langage));
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Langage> deleteLangage(@PathVariable("id") Integer id) {
-        langageService.deleteLangageById(id);
+        langageServiceInter.deleteLangageById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

@@ -1,7 +1,7 @@
 package fr.erickfranco.cv_api.controllers;
 
 import fr.erickfranco.cv_api.models.Experience;
-import fr.erickfranco.cv_api.services.ExperienceService;
+import fr.erickfranco.cv_api.services.serviceinter.ExpericenceServiceInter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,31 +14,35 @@ import java.util.List;
 public class ExperienceController {
 
     @Autowired
-    public ExperienceService experienceService;
+    public final ExpericenceServiceInter expericenceServiceInter;
+
+    public ExperienceController(ExpericenceServiceInter expericenceServiceInter) {
+        this.expericenceServiceInter = expericenceServiceInter;
+    }
 
     @GetMapping("/experiences")
     public ResponseEntity<List<Experience>> getDiplome() {
-        return ResponseEntity.status(HttpStatus.OK).body(experienceService.findAll());
+        return ResponseEntity.status(HttpStatus.OK).body(expericenceServiceInter.findAll());
     }
 
     @PostMapping("/experiences/createExperience")
     public ResponseEntity<Experience> saveDiplome(@RequestBody Experience experience) {
-       return ResponseEntity.status(HttpStatus.CREATED).body(experienceService.saveExperience(experience));
+       return ResponseEntity.status(HttpStatus.CREATED).body(expericenceServiceInter.saveExperience(experience));
     }
 
     @GetMapping("/experienceId/{id}")
     public ResponseEntity<Experience> experienceById(@PathVariable Integer id) {
-       return ResponseEntity.status(HttpStatus.OK).body(experienceService.findById(id));
+       return ResponseEntity.status(HttpStatus.OK).body(expericenceServiceInter.findById(id));
     }
 
     @PutMapping("/updateExperience")
     public ResponseEntity<Experience> updateParcour(@RequestBody Experience experience) {
-        return  ResponseEntity.status(HttpStatus.OK).body(experienceService.saveExperience(experience));
+        return  ResponseEntity.status(HttpStatus.OK).body(expericenceServiceInter.saveExperience(experience));
     }
 
     @DeleteMapping("/deleteId/{id}")
     public ResponseEntity<Experience> deleteExperience(@PathVariable Integer id) {
-       experienceService.deleteById(id);
+       expericenceServiceInter.deleteById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }
