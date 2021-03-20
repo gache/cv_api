@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -26,14 +27,13 @@ public class UserServiceImpl implements UserServiceInter {
 
 
     @Override
-    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        return null;
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Objects.requireNonNull(username);
+        User user = userRepository.findUserWithName(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        return user;
     }
 
-    @Override
-    public Optional<User> findUserWithName(String username) {
-        return Optional.empty();
-    }
 
     @Override
     public List<User> findAllUser() {
