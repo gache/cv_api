@@ -6,7 +6,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * @author Erick Franco
@@ -17,7 +16,7 @@ public interface UserServiceInter extends UserDetailsService {
     UserDetails loadUserByUsername(String s) throws UsernameNotFoundException;
     List<User> findAllUser();
 
-    Optional<User> findUserById(Long id);
+    User findUserById(Long id);
 
     User saveUser(User user);
 
