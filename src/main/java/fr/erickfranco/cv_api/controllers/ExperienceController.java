@@ -25,7 +25,7 @@ public class ExperienceController {
         return ResponseEntity.status(HttpStatus.OK).body(expericenceServiceInter.findAll());
     }
 
-    @PostMapping("/experiences/createExperience")
+    @PostMapping("/createExperience")
     public ResponseEntity<Experience> saveDiplome(@RequestBody Experience experience) {
        return ResponseEntity.status(HttpStatus.CREATED).body(expericenceServiceInter.saveExperience(experience));
     }

@@ -26,7 +26,7 @@ public class ProjetController {
         return ResponseEntity.status(HttpStatus.OK).body(projetServiceInter.findAllProjet());
     }
 
-    @PostMapping("/projets/createProjet")
+    @PostMapping("/createProjet")
     public ResponseEntity<Projet> createProjet(@RequestBody Projet projet) {
         return ResponseEntity.status(HttpStatus.CREATED).body(projetServiceInter.saveProjet(projet));
     }

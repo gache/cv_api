@@ -29,17 +29,17 @@ public class MessageController {
         return ResponseEntity.status(HttpStatus.OK).body(messageServiceInter.findAllMessage());
     }
 
-    @PostMapping("/messages/createMessage")
+    @PostMapping("/createMessage")
     public ResponseEntity<Message> addContact(@RequestBody Message message) {
         return ResponseEntity.status(HttpStatus.CREATED).body(messageServiceInter.saveMessage(message));
     }
 
-    @GetMapping("/messages/messageId/{id}")
+    @GetMapping("/messageId/{id}")
     public ResponseEntity<Message> getProjetById(@PathVariable Integer id) {
         return ResponseEntity.status(HttpStatus.OK).body(messageServiceInter.findMessageById(id));
     }
 
-    @DeleteMapping("/messages/deleteMessagesId/{id}")
+    @DeleteMapping("/deleteMessagesId/{id}")
     public ResponseEntity<Message> deleteMessage(@PathVariable Integer id) {
         messageServiceInter.deleteMessageById(id);
         return new ResponseEntity<>(HttpStatus.OK);
