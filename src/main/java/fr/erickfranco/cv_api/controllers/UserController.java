@@ -4,10 +4,7 @@ import fr.erickfranco.cv_api.models.User;
 import fr.erickfranco.cv_api.services.serviceinter.UserServiceInter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -18,6 +15,8 @@ public class UserController {
     public UserController(UserServiceInter userServiceInter) {
         this.userServiceInter = userServiceInter;
     }
+
+
 
     @PostMapping("/login")
     public ResponseEntity<User> createUser(@RequestBody User user) {
