@@ -1,6 +1,7 @@
 package fr.erickfranco.cv_api.configurations.security;
 
 import fr.erickfranco.cv_api.services.serviceinter.UserServiceInter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -17,24 +18,33 @@ import org.zalando.problem.spring.web.advice.security.SecurityProblemSupport;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private  final UserServiceInter userServiceInter;
+    @Autowired
+    private UserServiceInter userServiceInter;
 
     private final SecurityProblemSupport problemSupport;
 
-    public SecurityConfig(UserServiceInter userServiceInter, SecurityProblemSupport problemSupport) {
-        this.userServiceInter = userServiceInter;
+    public SecurityConfig(SecurityProblemSupport problemSupport) {
         this.problemSupport = problemSupport;
     }
 
     @Override
-    public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception{
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers(HttpMethod.OPTIONS, "/**")
+                .antMatchers("/swagger-ui.html")
+                .antMatchers("/test/**");
+    }
+
+    @Override
+    public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
         authenticationManagerBuilder.userDetailsService(userServiceInter).passwordEncoder(passEncoder());
     }
+
     //return response via http when login success
     @Bean
     public AjaxAuthenticationSuccessHandler ajaxAuthenticationSuccessHandler() {
         return new AjaxAuthenticationSuccessHandler();
     }
+
     //return response via http when login fails
     @Bean
     public AjaxAuthenticationFailureHandler ajaxAuthenticationFailureHandler() {
@@ -44,14 +54,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public AjaxLogoutSuccessHandler ajaxLogoutSuccessHandler() {
         return new AjaxLogoutSuccessHandler();
-    }
-
-
-    @Override
-    public void configure(WebSecurity web) throws Exception{
-        web.ignoring().antMatchers(HttpMethod.OPTIONS, "/**")
-                .antMatchers("/swagger-ui.html")
-                .antMatchers("/test/**");
     }
 
 

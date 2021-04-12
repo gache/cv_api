@@ -13,8 +13,10 @@ import java.util.Optional;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
-    @Query(" select u from User u " +
-            " where u.username = ?1")
-    Optional<User> findUserWithName(String username);
+    public User findByEmail(String email);
+    Optional<User> findByLogin(String login);
+    @Override
+    @Query(value = "select COUNT(*) from users WHERE users.is_admin <> 1 OR users.is_admin IS NULL", nativeQuery = true)
+    public long count();
 
 }
