@@ -2,8 +2,7 @@ package fr.erickfranco.cv_api.repositories;
 
 import fr.erickfranco.cv_api.models.Message;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
-@Repository
-public interface MessageRepository extends JpaRepository<Message, Integer> {
+
+public interface MessageRepository extends JpaRepository<Message, Long> {
 }

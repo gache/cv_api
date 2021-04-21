@@ -1,11 +1,11 @@
 package fr.erickfranco.cv_api.services.serviceimpl;
 
-import fr.erickfranco.cv_api.configurations.exceptionconfig.exception.BadRequestExcepton;
-import fr.erickfranco.cv_api.configurations.exceptionconfig.exception.NotFoundExcepton;
 import fr.erickfranco.cv_api.models.Projet;
 import fr.erickfranco.cv_api.repositories.ProjetRepository;
-import fr.erickfranco.cv_api.services.serviceinter.ProjetServiceInter;
+import fr.erickfranco.cv_api.services.serviceinter.IProjetService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,42 +14,37 @@ import java.util.List;
  * @author Erick Franco
  */
 @Service
-public class ProjetServiceImpl implements ProjetServiceInter {
-
-    private final ProjetRepository projetRepository;
+public class ProjetServiceImpl implements IProjetService {
 
     @Autowired
+    private final ProjetRepository projetRepository;
+
     public ProjetServiceImpl(ProjetRepository projetRepository) {
         this.projetRepository = projetRepository;
     }
 
     @Override
-    public List<Projet> findAllProjet() {
+    public List<Projet> findAll() {
         return projetRepository.findAll();
     }
 
     @Override
-    public Projet findProjetById(Integer id) {
-        if (!projetRepository.existsById(id)) {
-            throw new NotFoundExcepton("Le projet avec l'id " + id + " n'existe pas ");
-        }
-        return projetRepository.getOne(id);
+    public Page<Projet> findAll(Pageable pageable) {
+        return projetRepository.findAll(pageable);
     }
 
     @Override
-    public Projet saveProjet(Projet projet) {
-        if (projet.getNom() == null || projet.getNom().isEmpty()) {
-            throw new BadRequestExcepton("Le champ Nom est obligatoire");
-        }
-        projetRepository.save(projet);
-        return projet;
+    public Projet findById(Long id) {
+        return projetRepository.findById(id).orElse(null);
     }
 
     @Override
-    public void deleteById(Integer id) {
-        if (!projetRepository.existsById(id)) {
-            throw new NotFoundExcepton("Le Projet que vous souhaitez l'eliminer avec l'id numéro " + id + " n'existe pas ");
-        }
+    public Projet save(Projet projet) {
+        return projetRepository.save(projet);
+    }
+
+    @Override
+    public void delete(Long id) {
         projetRepository.deleteById(id);
     }
 }

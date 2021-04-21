@@ -7,12 +7,13 @@ import java.util.List;
 /**
  * @author Erick Franco
  */
-public interface ExpericenceServiceInter {
+public interface IExpericenceService {
+
     List<Experience> findAll();
 
-    Experience findById(Integer id);
+    Experience findById(Long id);
 
-    Experience saveExperience(Experience experience);
+    Experience save(Experience experience);
 
-    void deleteById(Integer id);
+    public void delete(Long id);
 }

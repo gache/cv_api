@@ -5,28 +5,23 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
-
 /**
  * @author Erick Franco
  */
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
-@Table(name = "langages_frameworks")
-public class Langage implements Serializable {
-    @Id
+@Table(name = "roles")
+public class Role implements Serializable {
+
+     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 30, nullable = false)
-    @NotEmpty(message = "Ce champ ne peut pas être vide")
-    private String langageInformatique;
-
-    @Column(length = 30, nullable = false)
-    private String porcentage;
+    @Column(unique = true, length = 20)
+    private String prenom;
 
     private static final long serialVersionUID = 1L;
 }

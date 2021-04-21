@@ -1,9 +1,9 @@
 package fr.erickfranco.cv_api.services.serviceimpl;
 
-import fr.erickfranco.cv_api.configurations.exceptionconfig.exception.NotFoundExcepton;
 import fr.erickfranco.cv_api.models.Langage;
 import fr.erickfranco.cv_api.repositories.LangageRepository;
-import fr.erickfranco.cv_api.services.serviceinter.LangageServiceInter;
+import fr.erickfranco.cv_api.services.serviceinter.ILangageService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,37 +12,33 @@ import java.util.List;
  * @author Erick Franco
  */
 @Service
-public class LangageServiceImpl implements LangageServiceInter {
+public class LangageServiceImpl implements ILangageService {
+
+    @Autowired
     private final LangageRepository langageRepository;
 
     public LangageServiceImpl(LangageRepository langageRepository) {
         this.langageRepository = langageRepository;
     }
 
-
     @Override
-    public List<Langage> findAllLangage() {
+    public List<Langage> findAll() {
         return langageRepository.findAll();
     }
 
     @Override
-    public Langage findLangageById(Integer id) {
-        if (!langageRepository.existsById(id)) {
-            throw new NotFoundExcepton("Le projet avec l'id " + id + " n'existe pas ");
-        }
-        return langageRepository.getOne(id);
+    public Langage findById(Long id) {
+        return langageRepository.findById(id).orElse(null);
     }
 
     @Override
-    public Langage saveLangage(Langage langage) {
+    public Langage save(Langage langage) {
         return langageRepository.save(langage);
     }
 
     @Override
-    public void deleteLangageById(Integer id) {
-        if (!langageRepository.existsById(id)) {
-            throw new NotFoundExcepton("Le Lanagage que vous souhaitez l'eliminer avec l'id numéro " + id + " n'existe pas ");
-        }
+    public void delete(Long id) {
         langageRepository.deleteById(id);
+
     }
 }
