@@ -40,7 +40,6 @@ public class Experience implements Serializable {
     private String ville;
 
     @Temporal(TemporalType.DATE)
-    @NotEmpty(message = "Ce champ ne peut pas être vide")
     private Date date;
 
     @Column(columnDefinition = "Text")

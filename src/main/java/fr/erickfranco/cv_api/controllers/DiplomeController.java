@@ -76,7 +76,7 @@ public class DiplomeController {
             response.put("error", e.getMessage().concat(": ".concat(e.getMostSpecificCause().getMessage())));
             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        response.put("message", "Le Diplome a été avec satisfaction");
+        response.put("message", "Le Diplome a été créer avec satisfaction");
         response.put("diplome", newDiplome);
         return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
     }
