@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface LangageRepository extends JpaRepository<Langage, Integer> {
+public interface LangageRepository extends JpaRepository<Langage, Long> {
 }

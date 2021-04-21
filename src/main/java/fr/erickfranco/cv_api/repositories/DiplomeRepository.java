@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface DiplomeRepository extends JpaRepository<Diplome, Integer> {
+public interface DiplomeRepository extends JpaRepository<Diplome, Long> {
 
 }
