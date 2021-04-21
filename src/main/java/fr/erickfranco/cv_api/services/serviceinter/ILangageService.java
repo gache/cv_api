@@ -9,11 +9,11 @@ import java.util.List;
  */
 public interface ILangageService {
 
-    List<Langage> findAllLangages();
+    List<Langage> findAll();
 
-    Langage findLangageById(Integer id);
+    Langage findById(Integer id);
 
-    Langage saveLangage(Langage langage);
+    Langage save(Langage langage);
 
-    public void deleteById(Integer id);
+    public void delete(Integer id);
 }

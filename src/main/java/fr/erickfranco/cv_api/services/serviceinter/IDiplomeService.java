@@ -9,12 +9,12 @@ import java.util.List;
  */
 public interface IDiplomeService {
 
-    List<Diplome> findAllDiplomes();
+    List<Diplome> findAll();
 
-    Diplome findDiplomeById(Long id);
+    public Diplome findById(Long id);
 
-    Diplome saveDiplome(Diplome diplome);
+    Diplome save(Diplome diplome);
 
-    public void deleteDiplomeById(Long id);
+    public void delete(Long id);
 
 }

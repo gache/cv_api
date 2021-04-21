@@ -9,11 +9,11 @@ import java.util.List;
  */
 public interface IExpericenceService {
 
-    List<Experience> findAllExperiences();
+    List<Experience> findAll();
 
     Experience findById(Long id);
 
-    Experience saveExperience(Experience experience);
+    Experience save(Experience experience);
 
-    public void deleteById(Long id);
+    public void delete(Long id);
 }
