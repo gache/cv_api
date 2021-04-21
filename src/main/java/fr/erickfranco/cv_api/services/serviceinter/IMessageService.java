@@ -11,10 +11,10 @@ public interface IMessageService {
 
     List<Message> findAll();
 
-    Message findById(Integer id);
+    Message findById(Long id);
 
     Message save(Message message);
 
-    public void delete(Integer id);
+    public void delete(Long id);
 
 }
