@@ -1,6 +1,5 @@
 package fr.erickfranco.cv_api.models;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,7 +14,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "diplome")
+@Table(name = "diplomes")
 public class Diplome {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,7 +32,7 @@ public class Diplome {
     @Column(columnDefinition = "Text")
     private String description;
 
-    @JsonFormat(pattern = "YYYY-MM-DD", shape = JsonFormat.Shape.STRING)
+    @Temporal(TemporalType.DATE)
     private String annee;
 
 
