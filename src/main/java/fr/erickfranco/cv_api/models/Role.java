@@ -6,25 +6,22 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
-
 /**
  * @author Erick Franco
  */
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
-@Table(name = "langages_frameworks")
-public class Langage implements Serializable {
+@Table(name = "roles")
+public class Role implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 30, nullable = false)
-    private String langageInformatique;
-
-    @Column(length = 30, nullable = false)
-    private String porcentage;
-
-    private static final long serialVersionUID = 1L;
+    @Column(unique = true, length = 20)
+    private String prenom;
 }

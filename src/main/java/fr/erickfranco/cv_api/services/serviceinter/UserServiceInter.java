@@ -1,6 +1,6 @@
 package fr.erickfranco.cv_api.services.serviceinter;
 
-import fr.erickfranco.cv_api.models.User;
+import fr.erickfranco.cv_api.models.Utilisateur;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,16 +10,16 @@ import java.util.Optional;
  */
 public interface UserServiceInter  {
 
-    User saveUser(User user);
+    Utilisateur saveUser(Utilisateur user);
 
-    Optional<User> findUserById(Long id);
+    Optional<Utilisateur> findUserById(Long id);
 
     void deleteById(Long id);
 
-    Optional<User> findByLogin(String login);
+    Optional<Utilisateur> findByLogin(String login);
 
 
-    List<User> findAllUser();
+    List<Utilisateur> findAllUser();
 
 
 }

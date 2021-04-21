@@ -5,16 +5,21 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
+/**
+ * @author Erick Franco
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Projet {
+@Table(name = "projets")
+public class Projet implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(length = 30, nullable = false)
     private String nom;
@@ -28,4 +33,5 @@ public class Projet {
     @Column(length = 100, nullable = false)
     private String url;
 
+    private static final long serialVersionUID = 1L;
 }

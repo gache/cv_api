@@ -1,6 +1,6 @@
 package fr.erickfranco.cv_api.repositories;
 
-import fr.erickfranco.cv_api.models.User;
+import fr.erickfranco.cv_api.models.Utilisateur;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -8,9 +8,9 @@ import org.springframework.stereotype.Repository;
  * @author Erick Franco
  */
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserRepository extends JpaRepository<Utilisateur, Long> {
 
-    public User findByEmail(String email);
+    public Utilisateur findByEmail(String email);
 
 
 }

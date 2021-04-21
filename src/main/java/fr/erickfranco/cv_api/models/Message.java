@@ -8,18 +8,22 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Pattern;
+import java.io.Serializable;
 
+/**
+ * @author Erick Franco
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Message {
+@Table(name = "messages")
+public class Message implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Email
-    @Column(nullable = false, length = 150)
     private String email;
 
     @Column(length = 30, nullable = false)
@@ -35,4 +39,6 @@ public class Message {
 
     @Column(columnDefinition = "Text")
     private String message;
+
+    private static final long serialVersionUID = 1L;
 }

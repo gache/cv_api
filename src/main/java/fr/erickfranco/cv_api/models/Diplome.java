@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Date;
 
 /**
  * @author Erick Franco
@@ -15,10 +17,10 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Entity
 @Table(name = "diplomes")
-public class Diplome {
+public class Diplome implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(length = 80, nullable = false)
     private String nomDiplome;
@@ -33,7 +35,8 @@ public class Diplome {
     private String description;
 
     @Temporal(TemporalType.DATE)
-    private String annee;
+    private Date annee;
 
+    private static final long serialVersionUID = 1L;
 
 }
