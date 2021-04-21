@@ -26,7 +26,7 @@ public class Diplome implements Serializable {
 
     @Column(nullable = false)
     @NotEmpty(message = "Ce champ ne peut pas être vide")
-    @Size(min = 4, max = 50, message = "La taille du nom du diplome doit être entre 4 et 50 character")
+    @Size(min = 4, max = 150, message = "La taille du nom du diplome doit être entre 4 et 50 character")
     private String nomDiplome;
 
     @Column(length = 40, nullable = false)
@@ -41,7 +41,6 @@ public class Diplome implements Serializable {
     private String description;
 
     @Temporal(TemporalType.DATE)
-    @NotEmpty(message = "Ce champ ne peut pas être vide")
     private Date annee;
 
     private static final long serialVersionUID = 1L;
