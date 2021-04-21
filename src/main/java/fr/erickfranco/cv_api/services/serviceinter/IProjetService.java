@@ -15,9 +15,9 @@ public interface IProjetService {
 
     Page<Projet> findAll(Pageable pageable);
 
-    Projet findById(Integer id);
+    Projet findById(Long id);
 
     Projet save(Projet projet);
 
-    public void delete(Integer id);
+    public void delete(Long id);
 }
