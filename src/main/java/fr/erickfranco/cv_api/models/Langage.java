@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
 /**
@@ -21,6 +22,7 @@ public class Langage implements Serializable {
     private Long id;
 
     @Column(length = 30, nullable = false)
+    @NotEmpty(message = "Ce champ ne peut pas être vide")
     private String langageInformatique;
 
     @Column(length = 30, nullable = false)

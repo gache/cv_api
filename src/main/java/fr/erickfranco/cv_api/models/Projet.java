@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
 /**
@@ -22,16 +23,20 @@ public class Projet implements Serializable {
     private Long id;
 
     @Column(length = 30, nullable = false)
-    private String nom;
+    @NotEmpty(message = "Ce champ ne peut pas être vide")
+    private String nomProjet;
 
     @Column(columnDefinition = "TEXT")
-    private String description;
+    @NotEmpty(message = "Ce champ ne peut pas être vide")
+    private String descriptionProjet;
 
     @Column(length = 30, nullable = false)
-    private String langage;
+    @NotEmpty(message = "Ce champ ne peut pas être vide")
+    private String langageDuProjet;
 
     @Column(length = 100, nullable = false)
-    private String url;
+    @NotEmpty(message = "Ce champ ne peut pas être vide")
+    private String urlProjet;
 
     private static final long serialVersionUID = 1L;
 }
