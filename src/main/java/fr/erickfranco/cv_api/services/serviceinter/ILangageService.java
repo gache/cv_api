@@ -11,9 +11,9 @@ public interface ILangageService {
 
     List<Langage> findAll();
 
-    Langage findById(Integer id);
+    Langage findById(Long id);
 
     Langage save(Langage langage);
 
-    public void delete(Integer id);
+    public void delete(Long id);
 }
