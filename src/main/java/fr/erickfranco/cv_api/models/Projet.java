@@ -38,5 +38,7 @@ public class Projet implements Serializable {
     @NotEmpty(message = "Ce champ ne peut pas être vide")
     private String urlProjet;
 
+    private String photo;
+
     private static final long serialVersionUID = 1L;
 }
