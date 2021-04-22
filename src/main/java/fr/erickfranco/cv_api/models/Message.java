@@ -49,7 +49,6 @@ public class Message implements Serializable {
     private String message;
 
     @Temporal(TemporalType.DATE)
-    @NotEmpty(message = "Ce champ ne peut pas être vide")
     private Date date;
 
     private static final long serialVersionUID = 1L;
