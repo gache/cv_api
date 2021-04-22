@@ -114,7 +114,7 @@ public class ExperienceController {
             response.put("error", e.getMessage().concat(": ".concat(e.getMostSpecificCause().getMessage())));
             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        response.put("mensaje", "L'experience a été actualiser correctement");
+        response.put("message", "L'experience a été actualiser correctement");
         response.put("experience", updateExperience);
         return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
 
@@ -133,7 +133,7 @@ public class ExperienceController {
             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
-        response.put("mensaje", "L'experience a été eliminer");
+        response.put("message", "L'experience a été eliminer avec satisfaction");
         return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
 
     }

@@ -115,7 +115,7 @@ public class DiplomeController {
             response.put("error", e.getMessage().concat(": ".concat(e.getMostSpecificCause().getMessage())));
             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        response.put("mensaje", "Le diplome a été actualiser correctement");
+        response.put("message", "Le diplome a été actualiser correctement");
         response.put("diplome", updateDiplome);
         return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
 
@@ -134,7 +134,7 @@ public class DiplomeController {
             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
-        response.put("mensaje", "Le diplome a été eliminer");
+        response.put("message", "Le diplome a été eliminer avec satisfaction");
         return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
 
     }
