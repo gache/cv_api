@@ -22,12 +22,12 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/api/diplomes", "/api/projets/page/**", "/api/uploads/img/**",
-                        "/images/**")
-                .permitAll().antMatchers(HttpMethod.GET, "/api/diplomes/{id}").hasAnyRole("USER", "ADMIN")
+                .antMatchers(HttpMethod.GET, "/api/diplomes", "/api/experiences", "/api/langages", "/api/projets", "/api/messages", "/api/projets/page/**", "/api/uploads/img/**", "/images/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/diplomes/{id}", "/api/experiences/{id}", "/api/langages/{id}", "/api/projets/{id}", "/api/messages/{id}").hasAnyRole("USER", "ADMIN") // rehercher par id
                 .antMatchers(HttpMethod.POST, "/api/projets/upload").hasAnyRole("USER", "ADMIN")
-                .antMatchers(HttpMethod.POST, "/api/diplomes").hasRole("ADMIN").antMatchers("/api/diplomes/**")
-                .hasRole("ADMIN").anyRequest().authenticated().and().cors()
+                .antMatchers(HttpMethod.POST, "/api/diplomes", "/api/experiences", "/api/langages", "/api/projets", "/api/messages").hasRole("ADMIN") // create simplement admin
+                .antMatchers("/api/diplomes/**", "/api/experiences/**", "/api/langages/**", "/api/projets/**", "/api/messages/**").hasRole("ADMIN") // delete update simplement admin /** c'est une route generique
+                .anyRequest().authenticated().and().cors()
                 .configurationSource(corsConfigurationSource());
     }
 
